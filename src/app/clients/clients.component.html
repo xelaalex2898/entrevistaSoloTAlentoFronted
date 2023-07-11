@@ -1,28 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fa-duotone fa-shop"></i></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-house"></i>Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/stores"><i class="fa-duotone fa-store"></i>Tiendas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/products"><i class="fa-solid fa-bowling-pins"></i>Productos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="/cart" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-cart-shopping"></i>Carrito</a>
-          </li>
-          <li class="nav-item">
-            <button (click)="logout()">Cerrar sesión</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-</nav> 
-<p>clients works!</p>
+<style>
+  .main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .left{
+    float: left;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .right{
+    float: right;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .myPhoto{
+    border-radius: 50%;
+    height: 150px;
+    width: 100px;
+    object-fit: cover;
+  }
+  .right img{
+    margin-top: 50px;
+    height: 70vh;
+    width: 85%;
+  }
+  
+  
+</style>
+<div class="container-fluid main">
+  <div class="container-md left">
+    <img src="assets/foto curriculum.png" class="myPhoto">
+    <section class="bg-light p-4 rounded shadow text-center text-justify">
+      <p class="lead text-primary">
+        Muy buen día. Es un gusto saludarle. 
+        <br>
+        Me complace presentarle mi proyecto para la posición de desarrollador .NET full stack.
+        <br>
+        Espero sea de su agrado. 
+      </p>
+    </section>
+    
+  </div>
+  <div class="container-md right">
+    <img src="assets/fondo derecho.png">
+  </div>
+</div>

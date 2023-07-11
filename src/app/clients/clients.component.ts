@@ -1,24 +1,30 @@
 import { Component } from '@angular/core';
-import { UsersService } from '../services/users.service';
-import { Router } from '@angular/router';
 import { StorageService } from '../services/storage.service';
-import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css']
 })
 export class ClientsComponent {
-  constructor(private usersService: UsersService, private router: Router, private storageService: StorageService) { }
-  currentUser: any;
+  private baseUrl = 'https://localhost:7193/api/Clients/';
+  
+  Client : any[]=[];
+  constructor(private http: HttpClient,private storageService: StorageService) { }
+  currentUserid: any;
   ngOnInit(): void {
-    this.currentUser = this.storageService.getUser();
-  }
+    this.currentUserid = this.storageService.getUser().id;
+    this.getClient().subscribe((data: any[]) => {
+      this.Client = data;
+    });
+    this.storageService.saveClient(this.currentUserid)
 
-  logout() {
-    this.usersService.logout();
-    this.router.navigate(['']);
-      
   }
+  getClient():Observable<any[]>{
+    return this.http.get<any[]>(this.baseUrl+'getClient'+this.currentUserid)
+  };
+
+  
 }
 

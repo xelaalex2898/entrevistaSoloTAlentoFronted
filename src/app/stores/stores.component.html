@@ -1,0 +1,48 @@
+
+<div class="container-fluid">
+  <h1>Tiendas</h1>
+  <button *ngIf="admin ==true" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeForm">
+    Agregar tienda
+  </button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let store of stores">
+        <td>{{store.branch}}</td>
+        <td>{{store.direction}}</td>
+        <td class="d-flex">
+          <button *ngIf="admin ==true" class="btn btn-danger mr-auto" (click)="deleteStore(store.idStore)">Delete</button>
+          <a class="btn btn-primary ml-auto" href="/store-products/{{store.idStore}}">Ver productos </a>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal fade" id="storeForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar tienda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-column ">
+        <label class="mt-2" for="name">Sucursal</label>
+        <input class="mt-2" id="name" type="text" placeholder="Sucursal" [(ngModel)]="nombreTienda"> 
+        <label class="mt-2" for="Address">Dirección</label>
+        <input class="mt-2" id="Address" type="text" placeholder="av.Dirección no.1" [(ngModel)]="direccionTienda">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button (click)="saveStore()" type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>

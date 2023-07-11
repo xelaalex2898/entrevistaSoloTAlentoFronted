@@ -6,14 +6,24 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ClientsComponent } from './clients/clients.component';
-import { HttpRequestInterceptor } from './jwt-interceptor.interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
+import { StoresComponent } from './stores/stores.component';
+import { ProductsComponent } from './products/products.component';
+import { SalesComponent } from './sales/sales.component';
+import { StoreProductsComponent } from './store-products/store-products.component';
+import { httpInterceptorProviders } from './jwt-interceptor.interceptor';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ClientsComponent
+    ClientsComponent,
+    NavbarComponent,
+    StoresComponent,
+    ProductsComponent,
+    SalesComponent,
+    StoreProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -21,7 +31,7 @@ import { HttpRequestInterceptor } from './jwt-interceptor.interceptor';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [HttpRequestInterceptor],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
   
   

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class UsersService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   
   getUsers(): Observable<any> {
     return this.http.get(this.baseUrl);
@@ -29,12 +31,12 @@ export class UsersService {
   }
   
   login(name: string, pass: string): Observable<any> {
-    console.log('login')
+    
     return this.http.post(
       this.baseUrl + 'login',
       {
-        'name':name,
-        'pass':pass,
+        'username':name,
+        'password':pass
       }
     );
   }
@@ -43,16 +45,23 @@ export class UsersService {
     return this.http.delete(this.baseUrl+'/'+id);
   }
   getToken(): string {
-    
-    const token = localStorage.getItem('token');
-    console.log("token")
-    console.log(token)
+    const token = sessionStorage.getItem('auth-user');
     if (!token) {
-      throw new Error('No token found in session');
+      return "";
     }
     return token;
   }
   logout(){
     sessionStorage.clear();
+  }
+  getUserInfo(): any {
+    const token = sessionStorage.getItem('auth-user');
+    if (!token) {
+      this.router.navigate(['']);
+      return null;
+    }
+  
+    const decodedToken = jwt_decode<any>(token);
+    return decodedToken;
   }
 }

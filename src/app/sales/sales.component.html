@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>Sales</h1>
+  <div *ngIf="admin">
+    <button >Finalizar compra</button>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Client ID</th>
+        <th>Product ID</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of Cart">
+        <td>{{sale.client}}</td>
+        <td>{{sale.product}}</td>
+        <td><button (click)="deleteSale(sale.id)">Eliminar del carrito </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

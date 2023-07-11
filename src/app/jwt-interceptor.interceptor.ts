@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, flatMap, of, throwError } from 'rxjs';
 import { UsersService } from './services/users.service';
 import { EventBusService } from './_shared/event-bus.service';
 import { EventData } from './_shared/event.class';
@@ -15,14 +15,20 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.usersService.getToken();
-    if (!token) {
-      throw throwError('no token in sesion'); 
+
+    if (token=="") {
+      return next.handle(req);
     }
-    req = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`),
-      withCredentials: true,
-    });
-    return next.handle(req);
+    else{
+      const newtoken ="Bearer "+ token;
+      req = req.clone({
+        headers: req.headers
+          .set('Authorization', newtoken)
+          
+      });
+      console.log(req.headers)
+      return next.handle(req);
+    }
   }
 
   private handle401Error(request: HttpRequest<any>, next: HttpHandler) {

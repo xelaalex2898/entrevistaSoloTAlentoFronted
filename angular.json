@@ -58,15 +58,21 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "EntrevistaSoloTalentoFrontend:build:development",
+            "proxyConfig": "src/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "EntrevistaSoloTalentoFrontend:build:production"
             },
             "development": {
-              "browserTarget": "EntrevistaSoloTalentoFrontend:build:development"
+              "browserTarget": "EntrevistaSoloTalentoFrontend:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
-          "defaultConfiguration": "development"
+          
+        "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

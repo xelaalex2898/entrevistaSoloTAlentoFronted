@@ -1,0 +1,60 @@
+
+<div class="container-fluid">
+    <h1>Productos</h1>
+    <button *ngIf="admin ==true" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeForm">
+      Agregar producto
+    </button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Imagen</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of Products">
+          <td>{{product.code}}</td>
+          <td><img src="{{product.image}}" alt="{{product.code}}">{{product.image}}</td>
+          <td>{{product.description}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.stock}}</td>
+          
+          <td class="d-flex">
+            <button *ngIf="admin ==true" class="btn btn-danger mr-auto" (click)="deleteProduct(product.code)">Delete</button>
+            <button  class="btn btn-danger mr-auto" (click)="newSale(product.code)">Delete</button>
+            
+  
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="modal fade" id="storeForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar tienda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex flex-column ">
+            
+            <label class="mt-2" for="description">Descripción</label>
+            <input class="mt-2" id="description" type="text" placeholder="Descripción" [(ngModel)]="description">
+            <label class="mt-2" for="price">Precio</label>
+            <input class="mt-2" id="price" type="text" placeholder="Precio" [(ngModel)]="price">
+            <label class="mt-2" for="image">Imagen</label>
+            <input class="mt-2" id="image" type="file" accept="image/*" (change)="onImageSelected($event)" >
+            <label class="mt-2" for="stock">Stock</label>
+            <input class="mt-2" id="stock" type="text" placeholder="Stock" [(ngModel)]="stock">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button (click)="saveProduct()" type="button" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
