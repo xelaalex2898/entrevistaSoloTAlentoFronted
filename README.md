@@ -1,27 +1,61 @@
-# EntrevistaSoloTalentoFrontend
+# INSTRUCCIONES DE USO 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.4.
+## Acceso a datos. 
 
-## Development server
+    Dentro del proyecto EntrevistaSoloTalentoBackend hay un archivo con extensión .txt con el nombre "database.db" que contiene el código en SQL server que crea la base de datos y las tablas con sus respectivos campos. 
+    
+### Crear una base de datos 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+    Se necesita un manejador de bases de datos SQL SERVER, como sql managment studio. 
+    Acceda a su servidor local asegurandose tener encendido el servicio correspondiente.
+    De click derecho en el apartado "Databases" y posteriormente de click sobre "new Database" debe ponerle el nombre "EntrevistaSoloTalento" dentro del campo database name.
 
-## Code scaffolding
+    Por último en el menú superior presione el botón "New Querry" y pegue el código proporcionado en el archivo "database.db.txt" y ejecute con F5. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### configuración del proyecto "EntrevistaSoloTalentoBackend"
+    Antes de cerrar su manejador de base de datos debe obtener el nombre de su servidor. en mi caso es: "DESKTOP-86FDGJM\MSSQLSERVER01"
+    Usando el editor de código de su preferencia, se recomienda Visual Studio 2022, acceda al archivo "appseting.json" en el directorio principal del proyecto. 
+    Debe buscar el apartado "ConnectionStrings", dentro de este apartado hay una clave de nombre "SoloTalentoDB" en el valor correspondiente sustituya, usando el nombre de su servidor por: 
+    "Data {nombre de su servidor};Initial Catalog=EntrevistaSoloTalento;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False".
+    Sustituyendo {nombre de su servidor} por el nombre de su servidor. 
+## Ejecución del proyecto "EntrevistaSoloTalentoBackend"
 
-## Build
+#### Opción 1:
+    Abra el proyecto con Visual Studio 2022 y ejecute el proyecto. 
+#### Opción 2:
+    Dentro de una consola o CMD acceda al directorio del proyecto, una vez ahí escriba el comando 
+    
+    dotnet run. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Esto creará un servidor local en el puerto 7193
 
-## Running unit tests
+    https://localhost:7193
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Ejecución del proyecto "EntrevistaSoloTalentoFrontend"
 
-## Running end-to-end tests
+#### Opción 1:
+    Abra el proyecto con Visual Studio Code, presionando el shurtcut 
+    ctrl+ñ 
+    para abrir una terminal ó abriendo usando la interfaz gráfica ejecute el comando 
+    ng serve
+#### Opción 2:
+    Dentro de una consola o CMD acceda al directorio del proyecto, una vez ahí escriba el comando 
+    ng serve 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Esto creará un servidor local en el puerto 4200
 
-## Further help
+    http://localhost:4200/
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Una vez ahí deberá registrarse. Por defecto los usuarios que cree dentro de la aplicación tendrán el rol de usuario NO manager. 
+
+## Comentarios fianles
+
+    Espero sea de su agrado, me esforcé mucho por seguir convenciones de clean code en ambos frameworks.
+    Por tema de tiempo hay cosas que no pude completar como usar los servicios en angular. 
+
+    Espero puedan tomarme en cuenta y así colaborar, espero con ansias sus comentarios y sea cual sea su decisión les agradezco por la oprtunidad, me divertí mucho en este proyecto. 
+    
+    
+
+
+    
