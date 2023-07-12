@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
     <h1>Productos</h1>
-    <button *ngIf="admin ==true" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeForm">
+    <button *ngIf="admin==true" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeForm">
       Agregar producto
     </button>
     <table class="table">
@@ -23,8 +23,8 @@
           <td>{{product.stock}}</td>
           
           <td class="d-flex">
-            <button *ngIf="admin ==true" class="btn btn-danger mr-auto" (click)="deleteProduct(product.code)">Delete</button>
-            <button  class="btn btn-danger mr-auto" (click)="newSale(product.code)">Delete</button>
+            <button *ngIf="admin==true" class="btn btn-danger mr-auto" (click)="deleteProduct(product.code)">Delete</button>
+            <button  class="btn btn-success mr-auto" (click)="newSale(product.code)">Agregar al carrito</button>
             
   
           </td>

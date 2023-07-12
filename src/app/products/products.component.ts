@@ -5,6 +5,7 @@ import { UsersService } from '../services/users.service';
 import Swal from 'sweetalert2'
 import { SalesComponent } from '../sales/sales.component';
 import { StorageService } from '../services/storage.service';
+import { UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'products',
@@ -14,12 +15,11 @@ import { StorageService } from '../services/storage.service';
 
 export class ProductsComponent implements OnInit {
   private baseUrl = 'https://localhost:7193/api/Products';
-  private clientsUrl='https://localhost:7193/api/Sales'
+  private salesUrl='https://localhost:7193/api/Sales'
   Products: any[] = [];
-  userId: number=0;
+  clientId :number=0;
   productId:number=0;
   admin: boolean=false;
-  modalOpen: boolean = false;
   description: string="";
   price: number=0;
   image: string="";
@@ -29,7 +29,7 @@ export class ProductsComponent implements OnInit {
   constructor(private http: HttpClient, private usersService:UsersService, private storageService:StorageService ) { }
   ngOnInit(): void {
     this.admin = this.usersService.getUserInfo().admin;
-    this.userId=this.storageService.getClient();
+    this.clientId=this.storageService.getClient();
     this.getProducts().subscribe((data: any[]) => {
       this.Products = data;
     });
@@ -38,14 +38,11 @@ export class ProductsComponent implements OnInit {
   getProducts(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
- 
-  closeModal(): void {
-    this.modalOpen = false;
-    this.description=""
-    this.price=0
-    this.image=""
-    this.stock=0
+  getProduct(id: number):Observable<any>{
+    const url = this.baseUrl+"/product/?id="+id
+    return this.http.get<any>(url)
   }
+  
 
   saveProduct(): void {
     if (this.selectedImage) {
@@ -78,20 +75,19 @@ export class ProductsComponent implements OnInit {
     });
   }
   onImageSelected(event: any): void {
-    console.log("image selected");
     
     const files = event.target.files;
   if (files && files.length > 0) {
     this.selectedImage = files[0];
   }
   }
-  newSale(clientId:number):void{
-    const url = `${this.clientsUrl}/${clientId}`;
+  newSale(productId:number):void{
+    
     const sale ={
-      client :this.userId,
-      product :this.productId
+      "client" :this.clientId,
+      "product" :productId
     }
-    this.http.post(url,sale).subscribe((data: any) => {
+    this.http.post(this.salesUrl,sale).subscribe((data: any) => {
       Swal.fire(
         'Agregado',
         'Se ha registrado exitosamente',

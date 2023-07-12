@@ -20,12 +20,13 @@ export class UsersService {
     return this.http.get(this.baseUrl);
   }
   
-  register(username: string, password: string): Observable<any> {
+  register(username: string, password: string,isManager:boolean): Observable<any> {
     return this.http.post(
       this.baseUrl + 'register',
       {
         username,
         password,
+        isManager
       },
     );
   }
@@ -36,7 +37,7 @@ export class UsersService {
       this.baseUrl + 'login',
       {
         'username':name,
-        'password':pass
+        'password':pass,
       }
     );
   }
@@ -62,6 +63,7 @@ export class UsersService {
     }
   
     const decodedToken = jwt_decode<any>(token);
+    
     return decodedToken;
   }
 }

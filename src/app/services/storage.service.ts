@@ -20,15 +20,22 @@ export class StorageService {
     window.sessionStorage.setItem(USER_KEY,user);
   }
   public saveClient(id:number): void {
-    
-    window.sessionStorage.removeItem(CLIENT_KEY);
     window.sessionStorage.setItem(CLIENT_KEY,id.toString());
   }
 
   public getUser(): any {
-    const user = window.sessionStorage.getItem(USER_KEY);
-    if (user) {
-      return JSON.parse(user);
+    const jwt = window.sessionStorage.getItem(USER_KEY);
+    
+
+    if (jwt) {
+      const decodedToken = JSON.parse(atob(jwt.split('.')[1])); 
+
+    const user = {
+      username: decodedToken.username,
+      id: decodedToken.id,
+      admin: decodedToken.admin
+    };
+    return  user
     }
 
     return null;

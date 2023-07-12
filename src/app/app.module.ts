@@ -12,6 +12,7 @@ import { ProductsComponent } from './products/products.component';
 import { SalesComponent } from './sales/sales.component';
 import { StoreProductsComponent } from './store-products/store-products.component';
 import { httpInterceptorProviders } from './jwt-interceptor.interceptor';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { httpInterceptorProviders } from './jwt-interceptor.interceptor';
     ProductsComponent,
     SalesComponent,
     StoreProductsComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,

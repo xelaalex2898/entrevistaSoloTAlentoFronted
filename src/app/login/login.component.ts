@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
 
     this.usersService.login(name, pass).subscribe({
       next: (data:any) => {
-        console.log(data.message)
         this.storageService.saveUser(data.message);
         this.isLoginFailed = false;
         this.isLoggedIn = true;

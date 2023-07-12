@@ -35,8 +35,9 @@
   
   
 </style>
-<div class="container-fluid main">
+<div *ngIf="modal==false" class="container-fluid main">
   <div class="container-md left">
+    
     <img src="assets/foto curriculum.png" class="myPhoto">
     <section class="bg-light p-4 rounded shadow text-center text-justify">
       <p class="lead text-primary">
@@ -52,4 +53,20 @@
   <div class="container-md right">
     <img src="assets/fondo derecho.png">
   </div>
+  
+  
 </div>
+<div  *ngIf="modal" class="container-fluid d-flex flex-column align-items-center justify-content-center mt-2">
+  <h5 class="modal-title" id="exampleModalLabel">Registro</h5>
+  <p>Por favor finalice su Registro</p>
+
+  <label class="mt-2" for="name">Nombre</label>
+  <input class="mt-2" id="name" type="text" placeholder="Nombre" [(ngModel)]="name"> 
+  <label class="mt-2" for="lastName">Apellido</label>
+  <input class="mt-2" id="lastName" type="text" placeholder="Apellido" [(ngModel)]="lastName">
+  <label class="mt-2" for="Address">Dirección</label>
+  <input class="mt-2" id="Address" type="text" placeholder="av.Dirección no.1" [(ngModel)]="direction">
+  
+  <button (click)="saveClient()" type="button" class="btn btn-primary mt-2">Guardar</button>
+
+</div>   

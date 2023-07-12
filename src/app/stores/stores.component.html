@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
   <h1>Tiendas</h1>
-  <button *ngIf="admin ==true" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeForm">
+  <button *ngIf="admin==true" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#storeForm">
     Agregar tienda
   </button>
   <table class="table">
@@ -17,7 +17,7 @@
         <td>{{store.branch}}</td>
         <td>{{store.direction}}</td>
         <td class="d-flex">
-          <button *ngIf="admin ==true" class="btn btn-danger mr-auto" (click)="deleteStore(store.idStore)">Delete</button>
+          <button *ngIf="admin==true" class="btn btn-danger mr-auto" (click)="deleteStore(store.idStore)">Eliminar</button>
           <a class="btn btn-primary ml-auto" href="/store-products/{{store.idStore}}">Ver productos </a>
 
         </td>

@@ -1,21 +1,26 @@
 <div class="container">
   <h1>Sales</h1>
-  <div *ngIf="admin">
-    <button >Finalizar compra</button>
+  <div *ngIf="admin==true">
+    <button class="btn btn-primary" >Finalizar compra</button>
   </div>
   <table class="table">
     <thead>
       <tr>
-        <th>Client ID</th>
-        <th>Product ID</th>
-        <th>Action</th>
+        <th>Code</th>
+        <th>image</th>
+        <th>description</th>
+        <th>price</th>
+        <th>stock</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let sale of Cart">
-        <td>{{sale.client}}</td>
-        <td>{{sale.product}}</td>
-        <td><button (click)="deleteSale(sale.id)">Eliminar del carrito </button></td>
+        <td>{{sale.code}}</td>
+          <td><img src="{{sale.image}}" alt="{{sale.code}}">{{sale.image}}</td>
+          <td>{{sale.description}}</td>
+          <td>{{sale.price}}</td>
+          <td>{{sale.stock}}</td>
+        <td><button class="btn btn-danger" (click)="deleteSale(sale.sales)">Eliminar del carrito </button></td>
       </tr>
     </tbody>
   </table>

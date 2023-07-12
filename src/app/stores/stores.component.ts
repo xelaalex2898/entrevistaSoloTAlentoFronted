@@ -12,31 +12,24 @@ export class StoresComponent implements OnInit {
   private baseUrl = 'https://localhost:7193/api/Stores';
   stores: any[] = [];
   admin: boolean=false;
-  modalOpen: boolean = true;
   nombreTienda: string = '';
   direccionTienda: string = '';
 
   constructor(private http: HttpClient, private usersService:UsersService) { }
 
   ngOnInit(): void {
-    this.admin = this.usersService.getUserInfo().admin;
     
     this.getStores().subscribe((data: any[]) => {
       this.stores = data;
     });
+    this.admin = this.usersService.getUserInfo().admin;
+    
   }
 
   getStores(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
-  openModal(): void {
-    this.modalOpen = true;
-  }
-
-  closeModal(): void {
-    this.modalOpen = false;
-    this.direccionTienda = '';
-  }
+ 
 
   saveStore(): void {
     const store ={
@@ -49,14 +42,10 @@ export class StoresComponent implements OnInit {
         'Se ha registrado exitosamente',
         'success'
       )
-      this.closeModal();
-      this.getStores().subscribe((data: any[]) => {
-        this.stores = data;
-      });
+      
     });
   }
   deleteStore(id: number): void {
-    console.log(id)
     const url = `${this.baseUrl}/${id}`;
     this.http.delete(url).subscribe(() => {
       Swal.fire(

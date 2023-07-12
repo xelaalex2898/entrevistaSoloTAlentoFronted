@@ -26,7 +26,6 @@ export class HttpRequestInterceptor implements HttpInterceptor {
           .set('Authorization', newtoken)
           
       });
-      console.log(req.headers)
       return next.handle(req);
     }
   }

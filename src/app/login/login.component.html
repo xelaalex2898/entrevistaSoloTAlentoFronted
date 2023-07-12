@@ -6,7 +6,7 @@
         class="profile-img-card"
       />
       <form
-        *ngIf="!isLoggedIn"
+        
         name="form"
         (ngSubmit)="f.form.valid && onSubmit()"
         #f="ngForm"
@@ -57,6 +57,7 @@
           </div>
         </div>
       </form>
-  
+      <a href="/register">¿Aún no tienes cuenta? !Registrate¡</a>
     </div>
+
   </div>
